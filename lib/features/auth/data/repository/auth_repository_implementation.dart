@@ -33,7 +33,7 @@ class AuthRepositoryImplementation implements AuthRepository {
       return right(user);
     } on sb.AuthException catch (e) {
       return left(Failure(e.message));
-    } on ServerExecption catch (e) {
+    } on ServerException catch (e) {
       return left(Failure(e.message));
     }
   }
@@ -47,7 +47,7 @@ class AuthRepositoryImplementation implements AuthRepository {
       } else {
         return right(user);
       }
-    } on ServerExecption catch (e) {
+    } on ServerException catch (e) {
       return left(Failure(e.message));
     }
   }

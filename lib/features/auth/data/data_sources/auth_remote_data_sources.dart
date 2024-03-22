@@ -28,12 +28,12 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       final response = await supabaseClient.auth
           .signInWithPassword(password: password, email: email);
       if (response.user == null) {
-        throw ServerExecption('User is null');
+        throw ServerException('User is null');
       }
       return UserModel.fromJson(response.user!.toJson())
           .copyWith(email: currentSession!.user.email);
     } catch (e) {
-      throw ServerExecption(e.toString());
+      throw ServerException(e.toString());
     }
   }
 
@@ -47,12 +47,12 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       final response = await supabaseClient.auth
           .signUp(password: password, email: email, data: {'name': name});
       if (response.user == null) {
-        throw ServerExecption('User is null');
+        throw ServerException('User is null');
       }
       return UserModel.fromJson(response.user!.toJson())
           .copyWith(email: currentSession!.user.email);
     } catch (e) {
-      throw ServerExecption(e.toString());
+      throw ServerException(e.toString());
     }
   }
 
@@ -69,7 +69,7 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       return UserModel.fromJson(res.first)
           .copyWith(email: currentSession!.user.email);
     } catch (e) {
-      throw ServerExecption(e.toString());
+      throw ServerException(e.toString());
     }
   }
 }
